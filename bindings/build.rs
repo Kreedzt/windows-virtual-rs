@@ -6,7 +6,8 @@ fn main() {
             SendInput,
             INPUT_TYPE,
             MOUSEINPUT,
-            MOUSE_EVENT_FLAGS
+            MOUSE_EVENT_FLAGS,
+            // MOUSEEVENTF_LEFTDOWN
         },
     };
 }
