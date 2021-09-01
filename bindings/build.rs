@@ -4,7 +4,18 @@ fn main() {
             MessageBoxA,
             EnumWindows,
             GetWindowTextW,
-            GetWindowRect
+            GetWindowRect,
+            SetWindowPos,
+            HWND_TOP,
+            SendMessageCallbackA,
+            SendMessageA,
+            WM_KEYDOWN,
+            WM_KEYUP,
+            WM_SYSKEYDOWN,
+            WM_SYSKEYUP,
+            SetForegroundWindow,
+            VK_TAB,
+            VK_LBUTTON
         },
         Windows::Win32::UI::KeyboardAndMouseInput::{
             INPUT,
@@ -12,6 +23,7 @@ fn main() {
             INPUT_TYPE,
             MOUSEINPUT,
             MOUSE_EVENT_FLAGS,
+            SetActiveWindow
         },
     };
 }
