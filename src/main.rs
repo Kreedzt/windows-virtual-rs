@@ -14,6 +14,7 @@ use bindings::Windows::Win32::UI::WindowsAndMessaging::{
     GetWindowTextW,
     MessageBoxA,
     SendMessageA,
+    SendMessageW,
     SendMessageCallbackA,
     SetForegroundWindow,
     SetWindowPos,
@@ -24,6 +25,7 @@ use bindings::Windows::Win32::UI::WindowsAndMessaging::{
     WM_KEYUP,
     WM_SYSKEYDOWN,
     WM_SYSKEYUP,
+    WM_CHAR,
     WNDENUMPROC,
     VK_TAB,
     VK_LBUTTON
@@ -48,12 +50,16 @@ extern "system" fn enum_window(window: HWND, l: LPARAM) -> BOOL {
         // let mut v = Vec::with_capacity(3);
         //
 
-        // if !text.is_empty() {
-        //     println!("{}, {:?}", text, rect);
-        // }
+        if !text.is_empty() {
+            // println!("{}, {:?}", text, rect);
+            if text.starts_with("便笺") {
+                println!("{}, {:?}", text, rect);
+            }
+        }
 
         if text == "便笺" {
-            println!("{}-{:?}", text, rect);
+            // return true.into();
+            // println!("{}-{:?}", text, rect);
             // v.push(rect);
             // return false.into();
             if rect.top != 1 {
@@ -63,17 +69,35 @@ extern "system" fn enum_window(window: HWND, l: LPARAM) -> BOOL {
 
                 SetForegroundWindow(window);
 
+                // 1
                 // SendMessageCallbackA(window, WM_KEYDOWN, WPARAM(0x31), LPARAM(0), None, 0);
                 // SendMessageCallbackA(window, WM_KEYUP, WPARAM(0x31), LPARAM(0), None, 0);
 
+                // 1
                 // SendMessageCallbackA(window, WM_SYSKEYDOWN, WPARAM(0x31), LPARAM(0), None, 0);
                 // SendMessageCallbackA(window, WM_SYSKEYUP, WPARAM(0x31), LPARAM(0), None, 0);
-                //
+
+                // TAB
                 // SendMessageA(window, WM_SYSKEYDOWN, WPARAM(0x09), LPARAM(0));
                 // SendMessageA(window, WM_SYSKEYUP, WPARAM(0x09), LPARAM(0));
 
-                SendMessageA(window, WM_SYSKEYDOWN, WPARAM(VK_TAB.try_into().unwrap()), LPARAM(0));
-                SendMessageA(window, WM_SYSKEYUP, WPARAM(VK_TAB.try_into().unwrap()), LPARAM(0));
+                // TAB
+                // SendMessageW(window, WM_SYSKEYDOWN, WPARAM(0x09), LPARAM(0));
+                // SendMessageW(window, WM_SYSKEYUP, WPARAM(0x09), LPARAM(0));
+
+                // LeftClick
+                // SendMessageW(window, WM_SYSKEYDOWN, WPARAM(0x02), LPARAM(0));
+                // SendMessageW(window, WM_SYSKEYUP, WPARAM(0x02), LPARAM(0));
+
+                // RightClick
+                // SendMessageW(window, WM_CHAR, WPARAM(0x02), LPARAM(0));
+                // SendMessageW(window, WM_CHAR, WPARAM(0x02), LPARAM(0));
+
+                // 0 key
+                SendMessageW(window, WM_CHAR, WPARAM(0x30), LPARAM(0));
+                SendMessageW(window, WM_CHAR, WPARAM(0x30), LPARAM(0));
+                SendMessageW(window, WM_CHAR, WPARAM(0x30), LPARAM(0));
+                SendMessageW(window, WM_CHAR, WPARAM(0x30), LPARAM(0));
 
                 // SetWindowPos(window, HWND_TOP, 0, 30, 720, 720, SWP_SHOWWINDOW);
             }

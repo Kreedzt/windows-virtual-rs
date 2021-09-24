@@ -9,10 +9,12 @@ fn main() {
             HWND_TOP,
             SendMessageCallbackA,
             SendMessageA,
+            SendMessageW,
             WM_KEYDOWN,
             WM_KEYUP,
             WM_SYSKEYDOWN,
             WM_SYSKEYUP,
+            WM_CHAR,
             SetForegroundWindow,
             VK_TAB,
             VK_LBUTTON
